@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    table, th, td {
+      border: 1px solid black;
+      border-collapse: collapse;
+      padding: 8px;
+    }
+  </style>
+</head>
+<body>
+    <table id="purchaseOrderTable">
+        <tr>
+          <th>Purchase Order Address</th>
+          <td id="purchaseOrderAddress"></td>
+        </tr>
+        <tr>
+          <th>Purchase Order Contact Person</th>
+          <td id="purchaseOrderContactPerson"></td>
+        </tr>
+        <tr>
+          <th>Purchase Order Status</th>
+          <td id="purchaseOrderStatus"></td>
+        </tr>
+        <tr>
+          <th>Purchase Order Details</th>
+          <td>
+            <table id="purchaseOrderDetailsTable">
+              <tr>
+                <th>Product SKU</th>
+                <th>Quantity Ordered</th>
+                <th>Unit Price</th>
+                <th>Total Amount</th>
+              </tr>
+              <tr>
+                <td id="productSKU"></td>
+                <td id="quantityOrdered"></td>
+                <td id="unitPrice"></td>
+                <td id="totalAmount"></td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+      </table>
+      <script>
+        var data=fetch("purchaseorders.json")
+.then(response=>(response.json()))
+.then(function(veri){
+    //bu en baştaki kısım adres kısmı
+    var degisken=veri.mvPurchaseOrders[0].PurchaseOrderAddress;
+    document.getElementById("purchaseOrderAddress").innerHTML=degisken;
+    
+     var degisken2=veri.mvPurchaseOrders[0].PurchaseOrderContactPerson;
+    document.getElementById("purchaseOrderContactPerson").innerHTML=degisken2;
+    
+     var degisken3=veri.mvPurchaseOrders[0].PurchaseOrderStatus;
+     document.getElementById("purchaseOrderStatus").innerHTML=degisken3;
+    
+     var degisken4=veri.mvPurchaseOrders[0].PurchaseOrderDetails[0].PurchaseOrderRowProductSKU;
+     document.getElementById("productSKU").innerHTML=degisken4;
+
+     var degisken5=veri.mvPurchaseOrders[0].PurchaseOrderDetails[0].PurchaseOrderRowQuantity;
+     document.getElementById("quantityOrdered").innerHTML=degisken5;
+
+     var degisken6=veri.mvPurchaseOrders[0].PurchaseOrderDetails[0].PurchaseOrderRowUnitPriceWithoutTaxOrDiscount;
+     document.getElementById("unitPrice").innerHTML=degisken6;
+
+     var degisken7=veri.mvPurchaseOrders[0].PurchaseOrderDetails[0].PurchaseOrderRowTotalAmount;
+     document.getElementById("totalAmount").innerHTML=degisken7;
+})
+      </script>
+</body>
+</html>
