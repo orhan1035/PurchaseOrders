@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h2>Purchase Orders</h2>
+    <a id="PurchaseOrderNoPage90" href="order90.html" onclick="window.open('order90.html', '_blank', 'toolbar=yes,scrollbars=yes,resizable=yes,top=500,left=500,width=600,height=400'); return false;"></a>
+    <br>
+    <a  id="PurchaseOrderNoPage89" href="order89.html" onclick="window.open('order89.html', '_blank', 'toolbar=yes,scrollbars=yes,resizable=yes,top=500,left=500,width=600,height=400'); return false;"></a>
+    <br>
+    <a id="PurchaseOrderNoPage88" href="order88.html" onclick="window.open('order88.html', '_blank', 'toolbar=yes,scrollbars=yes,resizable=yes,top=500,left=500,width=600,height=400'); return false;"></a>
+
+    <script>
+        function parsePurchaseOrders(purchaseOrdersData) {
+            var purchaseOrders = purchaseOrdersData.mvPurchaseOrders;
+            for (var i = 0; i < purchaseOrders.length; i++) {
+                var purchaseOrderNo = purchaseOrders[i].PurchaseOrderNo;
+                var purchaseOrderTypeAbbreviation = purchaseOrders[i].PurchaseOrderTypeAbbreviation;
+                var elementId = "PurchaseOrderNoPage" + (90 - i);
+                document.getElementById(elementId).innerHTML = purchaseOrderTypeAbbreviation + " - " + purchaseOrderNo;
+            }
+        }
+
+        fetch("purchaseorders.json")
+            .then(response => response.json())
+            .then(function(data) {
+                parsePurchaseOrders(data);
+            });
+    </script>
+</body>
+</html>
