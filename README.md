@@ -10,3 +10,6 @@ The CSS file contains the styles for the page, such as font size and color.
 The JavaScript file is responsible for retrieving the data from a JSON file and displaying it on the page. The `fetch` method is used to retrieve the data and the `parsePurchaseOrders` function is used to parse the data and update the innerHTML of the links.
 
 To run the web page, simply open the HTML file in a web browser. The JavaScript will retrieve the data and update the links with the information.
+
+Purchase Order Table
+This HTML table displays information about a purchase order, including the purchase order address, contact person, status, and details.
